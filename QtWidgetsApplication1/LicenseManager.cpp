@@ -69,6 +69,8 @@ bool LicenseManager::activateWithKey(const QString& key) {
 }
 
 QString LicenseManager::generateActivationKey(int days) {
-    QString raw = "RENEW-" + QString::number(days);
+    //QString raw = "RENEW-" + QString::number(days);
+    QString dateStr = QDate::currentDate().toString("yyyyMMdd");
+    QString raw = dateStr + "-" + QString::number(days);  // 如：20250408-30
     return simpleEncrypt(raw);  // 返回加密后的激活码
 }
